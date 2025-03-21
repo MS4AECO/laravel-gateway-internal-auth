@@ -22,7 +22,30 @@ composer require ms4aeco/laravel-gateway-internal-auth
 
 ## Configuration
 
+Require the package in your Laravel application:
+
+```php
+# composer.json
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/MS4AECO/laravel-gateway-internal-auth.git"
+    }
+  ],
+  "require": {
+    "ms4aeco/laravel-gateway-internal-auth": "^1.0"
+  }
+}
+```
+
 Publish the configuration file:
+
+```bash
+php artisan gateway-auth:publish
+```
+
+or use the standard vendor publish command:
 
 ```bash
 php artisan vendor:publish --provider="Ms4Aeco\GatewayInternalAuth\GatewayInternalAuthServiceProvider" --tag="config"
