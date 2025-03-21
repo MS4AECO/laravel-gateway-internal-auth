@@ -10,15 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - New Artisan command `gateway-auth:publish` to easily publish configuration files
-- Case insensitive header name handling for more flexibility
-- Support for disabling both authentication methods simultaneously
 - Additional test coverage for command functionality and configuration options
 
 ### Changed
 
 - Improved configuration publishing mechanism
-- Enhanced logging with customizable log levels and channels
-- Better handling of disabled logging configuration
 
 ## [1.0.0] - 2025-21-03
 
