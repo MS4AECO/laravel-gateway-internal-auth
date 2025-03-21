@@ -50,8 +50,6 @@ API_GATEWAY_LOGGING_CHANNEL=stack
 API_GATEWAY_DEBUG=false
 ```
 
-Alternatively, you can set `services.api_key` in your config.
-
 ## Usage
 
 ### Route Middleware
