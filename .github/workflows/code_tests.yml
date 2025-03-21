@@ -1,4 +1,5 @@
 name: Tests
+# This workflow is triggered on pull requests to the dev branch
 
 on:
   pull_request:
@@ -11,11 +12,11 @@ jobs:
 
     strategy:
       matrix:
-        php-version: ["8.0", "8.1"]
+        php-version: ["8.3"]
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
@@ -23,7 +24,7 @@ jobs:
           php-version: ${{ matrix.php-version }}
 
       - name: Cache Composer dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
