@@ -1,4 +1,5 @@
 name: Tests
+# This workflow is triggered on pull requests to the dev branch
 
 on:
   pull_request:
