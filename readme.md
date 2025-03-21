@@ -10,7 +10,7 @@ A Laravel package for validating internal service-to-service communication throu
 This package implements a security layer for microservices architectures where services communicate through an API gateway. It validates requests using:
 
 1. **API Key** - A unique key for each service
-2. **Gateway Secret** - A shared secret known only to the API gateway
+2. **Gateway Secret** - A shared secret known to the API gateway and services
 
 ## Installation
 
