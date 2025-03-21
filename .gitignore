@@ -1,0 +1,39 @@
+# Composer dependencies
+/vendor/
+composer.lock
+
+# Environment files
+.env
+.env.backup
+.env.*.local
+.phpunit.result.cache
+
+# IDE and editor files
+/.idea/
+/.vscode/
+*.sublime-project
+*.sublime-workspace
+.phpstorm.meta.php
+_ide_helper.php
+_ide_helper_models.php
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Build files
+/build/
+/coverage/
+/node_modules/
+npm-debug.log
+yarn-error.log
+
+# Laravel specific
+/storage/*.key
+/public/hot
+/public/storage

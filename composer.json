@@ -1,0 +1,41 @@
+{
+  "name": "ms4aeco/laravel-gateway-internal-auth",
+  "description": "Internal authentication middleware for the MS Laravel services",
+  "type": "library",
+  "require": {
+    "php": "^8.0",
+    "illuminate/support": "^8.0|^9.0|^10.0",
+    "illuminate/http": "^8.0|^9.0|^10.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^6.0|^7.0|^8.0",
+    "phpunit/phpunit": "^9.0|^10.0"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Ms4Aeco\\GatewayInternalAuth\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Ms4Aeco\\GatewayInternalAuth\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  },
+  "authors": [
+    {
+      "name": "Daniel Francisco",
+      "email": "danielfrancisco1594@gmail.com"
+    }
+  ],
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Ms4Aeco\\GatewayInternalAuth\\GatewayInternalAuthServiceProvider"
+      ]
+    }
+  }
+}
