@@ -1,6 +1,6 @@
 # Laravel API Gateway Internal Authentication
 
-![Laravel Version](https://img.shields.io/badge/Laravel-10.x|11.x-red.svg)
+![Laravel Version](https://img.shields.io/badge/Laravel-10.x-red.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
 A Laravel package for validating internal service-to-service communication through an API Gateway. Protects your APIs with dual-layer authentication using custom headers validation.
@@ -49,8 +49,6 @@ API_GATEWAY_LOGGING_CHANNEL=stack
 
 API_GATEWAY_DEBUG=false
 ```
-
-Alternatively, you can set `services.api_key` in your config.
 
 ## Usage
 
