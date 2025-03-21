@@ -268,6 +268,88 @@ class ValidateApiGatewayTest extends TestCase
         $response->assertJson(['status' => 'success']);
     }
 
+    public function testPublishCommandFunctionality()
+    {
+        // Test the command execution
+        $this->artisan('gateway-auth:publish')
+            ->expectsOutput('Gateway authentication configuration published successfully!')
+            ->assertExitCode(0);
+
+        // Verify the config file exists in the expected location after publishing
+        $configPath = config_path('gateway_internal_auth.php');
+        $this->assertTrue(file_exists($configPath));
+
+        // Ensure the content is correct (optional, but thorough)
+        $configContent = file_get_contents($configPath);
+        $this->assertStringContainsString('api_key', $configContent);
+        $this->assertStringContainsString('gateway_secret', $configContent);
+    }
+
+    public function testAccessIsAllowedWhenBothAuthMethodsAreDisabled()
+    {
+        // Disable both authentication methods
+        $this->app['config']->set('gateway_internal_auth.api_key.enabled', false);
+        $this->app['config']->set('gateway_internal_auth.gateway_secret.enabled', false);
+
+        // Request should succeed without any authentication headers
+        $response = $this->get('/api/test');
+
+        $response->assertStatus(200);
+        $response->assertJson(['status' => 'success']);
+    }
+
+    public function testDifferentLogLevelsAreUsedCorrectly()
+    {
+        // Configure custom log level
+        $this->app['config']->set('gateway_internal_auth.logging.enabled', true);
+        $this->app['config']->set('gateway_internal_auth.logging.level', 'info');
+        $this->app['config']->set('gateway_internal_auth.logging.channel', 'stack');
+
+        Log::shouldReceive('channel')
+            ->with('stack')
+            ->andReturnSelf()
+            ->once();
+
+        Log::shouldReceive('info')
+            ->once();
+
+        // Make the request
+        $response = $this->withHeaders([
+            'X-API-Key' => 'test-api-key',
+            'X-Gateway-Secret' => 'test-secret',
+        ])->get('/api/test');
+
+        $response->assertStatus(200);
+    }
+
+    public function testHeadersAreCaseInsensitive()
+    {
+        // Use mixed case in header names
+        $response = $this->withHeaders([
+            'x-Api-kEy' => 'test-api-key',
+            'X-gateway-SECRET' => 'test-secret',
+        ])->get('/api/test');
+
+        $response->assertStatus(200);
+        $response->assertJson(['status' => 'success']);
+    }
+
+    public function testLogDisabledConfiguration()
+    {
+        // Explicitly disable logging
+        $this->app['config']->set('gateway_internal_auth.logging.enabled', false);
+
+        // No log expectations - if any logging happens, the test will fail
+        // since we're not setting up any expectations on the Log facade
+
+        $response = $this->withHeaders([
+            'X-API-Key' => 'test-api-key',
+            'X-Gateway-Secret' => 'test-secret',
+        ])->get('/api/test');
+
+        $response->assertStatus(200);
+    }
+
     protected function tearDown(): void
     {
         Mockery::close();
