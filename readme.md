@@ -14,14 +14,6 @@ This package implements a security layer for microservices architectures where s
 
 ## Installation
 
-Install the package via Composer:
-
-```bash
-composer require ms4aeco/laravel-gateway-internal-auth
-```
-
-## Configuration
-
 Require the package in your Laravel application:
 
 ```php
@@ -37,6 +29,12 @@ Require the package in your Laravel application:
     "ms4aeco/laravel-gateway-internal-auth": "^1.0"
   }
 }
+```
+
+Install the package via Composer:
+
+```bash
+composer require ms4aeco/laravel-gateway-internal-auth
 ```
 
 Publish the configuration file:
